@@ -1,0 +1,9 @@
+SELECT [dbo].[Property].[Name], [dbo].[OwnerProperty].[OwnerId], [dbo].[Property].Bathroom, [dbo].[Property].Bedroom,[dbo].[Address].[Number] As 'Property Address', dbo.Person.FirstName, [dbo].[PropertyRentalPayment].Amount AS 'Rental payment', [dbo].[PropertyExpense].[Amount], [dbo].[PropertyExpense].Date, [dbo].[PropertyExpense].Description AS 'Expense'
+FROM [dbo].[Property]
+INNER JOIN [dbo].[OwnerProperty] ON [dbo].[Property].Id = [dbo].[OwnerProperty].PropertyId
+INNER JOIN [dbo].[Address] ON [dbo].[Address].[AddressId] = [dbo].[Property].[AddressId]
+INNER JOIN [dbo].[Person] ON [dbo].[OwnerProperty].OwnerId = [dbo].[Person].Id
+INNER JOIN [dbo].[PropertyRentalPayment] ON [dbo].[Property].Id = [dbo].[PropertyRentalPayment].PropertyId
+INNER JOIN [dbo].[PropertyExpense] ON [dbo].[Property].Id = [dbo].[PropertyExpense].PropertyId 
+
+WHERE NAME like 'Property A'
